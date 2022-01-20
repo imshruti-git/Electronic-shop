@@ -1,20 +1,33 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export default makeStyles (() => ({
+const drawerWidth = 0;
+
+export default makeStyles ((theme) => ({
+    
+
     appbar: {
-        borderBottom: '2px solid',
-
-    },
-
-    text: {
-        flexGrow: '1',
-        display: 'flex',
-        textAlign: 'center',
-        marginRight: '10px',
+        boxShadow: 'none',
+        borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+        width: `calc(100% - ${drawerWidth}px)`,
         
     },
+
+    title: {
+        flexGrow: 1,
+        display: 'flex', 
+        alignItem: 'center',
+        
+         
+    },
+
+    image: {
+        marginRight: '20px',
+        borderRadius: '50%',
+
+    },
+
+
     grow: {
-        flexGrow: '1',
-        
+        flexGrow: 1,
     },
 }));

@@ -1,21 +1,33 @@
-import React from 'react'
-import { Card, CardMedia, CardContent, CardActions, Typography, IconButton} from '@material-ui/core';
+import React from 'react';
+import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } from '@material-ui/core';
 import { AddShoppingCart } from '@material-ui/icons';
 
-const Product = ({ product }) => {
-    return (
-        <Card>
-            <CardMedia />
-            <CardContent>
-                <Typography>{product.name}</Typography>
-                <Typography>{product.price}</Typography>
-                <CardActions>
-                <IconButton><AddShoppingCart /></IconButton>
-                </CardActions>
-                
-            </CardContent>
-        </Card>
-    )
-}
+import useStyles from './product';
 
-export default Product
+const Product = ({ values }) => {
+  const classes = useStyles();
+
+  return (
+    <Card className={classes.main}>
+      <CardMedia className={classes.image} image='https://electronic-ecommerce.herokuapp.com/fantechHeadset.jpg' title={values.name} />
+      <CardContent>
+        <div className={classes.content}>
+          <Typography gutterBottom variant="h5">
+            {values.name}
+          </Typography>
+          <Typography variant="h5">
+            {values.price}
+          </Typography>
+        </div>
+        
+      </CardContent>
+      <CardActions disableSpacing className={classes.cardActions}>
+        <IconButton aria-label="Add to Cart">
+          <AddShoppingCart />
+        </IconButton>
+      </CardActions>
+    </Card>
+  );
+};
+
+export default Product;
