@@ -1,5 +1,5 @@
-import React from 'react';
-import { Container, Typography } from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
+import { Container, Typography, Grid, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { CartState } from '../../context/Context';
 import List from '@material-ui/core/List';
@@ -16,7 +16,13 @@ const Cart = () => {
     const classes = useStyles();
     const { state: { cart }, dispatch } = CartState();
     const image ="https://electronic-ecommerce.herokuapp.com/fantechHeadset.jpg";
-   // const isEmpty = true;
+   
+
+    const [total, setTotal] = useState();
+
+    useEffect(() => {
+      setTotal(cart.reduce((acc,cur) => acc + Number(cur.price), 0 ));
+    },[cart]);
 
     const renderEmptyCart = () => (
       <Typography variant="subtitle1">You have no items in your shopping cart,
@@ -55,11 +61,21 @@ const Cart = () => {
       </>
     );
   return(
-    <Container maxWidth="sm">
+    <Container maxWidth="md">
         <div className={classes.toolbar} />
         <div  className='classes.content'>
-        <Typography  className="classes.title" variant="h5" gutterBottom>Your Shopping Cart</Typography>
-        { !cart.length ? renderEmptyCart() : renderCart() }
+        <Grid container spacing={3}>
+            <Grid item xs={12} sm={6}>              
+                <Typography  className="classes.title" variant="h5" gutterBottom>Your Shopping Cart</Typography>
+                { !cart.length ? renderEmptyCart() : renderCart() }   
+            </Grid>
+            <Grid item xs={12} sm={6}>              
+                <Typography  className="classes.title" variant="h5" gutterBottom>Subtotal {cart.length} items:</Typography>
+                <Typography  className="classes.title" variant="h6" gutterBottom>Total:$ {total} </Typography>
+                <Button component={Link} to="/checkout" variant="contained" disabled={cart.length===0} color="primary"> Go to Chekout Form </Button>
+            </Grid>
+        </Grid>
+
         
         </div>
        
