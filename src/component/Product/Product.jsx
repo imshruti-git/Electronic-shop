@@ -1,30 +1,55 @@
 import React from 'react';
 import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } from '@material-ui/core';
 import { AddShoppingCart } from '@material-ui/icons';
+import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
+import { CartState } from '../../context/Context'
 
 import useStyles from './product';
 
 const Product = ({ values }) => {
   const classes = useStyles();
+  const { state: { cart }, dispatch } = CartState();
 
+  console.log(cart);
   return (
     <Card className={classes.main}>
       <CardMedia className={classes.image} image='https://electronic-ecommerce.herokuapp.com/fantechHeadset.jpg' title={values.name} />
       <CardContent>
-        <div className={classes.content}>
-          <Typography gutterBottom variant="h5">
-            {values.name}
-          </Typography>
-          <Typography variant="h5">
-            {values.price}
-          </Typography>
-        </div>
         
+          <Typography variant="h6">
+            Product: {values.name}
+          </Typography>
+          <Typography variant="h6">
+            Price: {values.price}
+          </Typography>
+        
+        <Typography variant="h6">
+           Stock: {values.stock}
+          </Typography>
+          <Typography variant="h6">
+            Category: {values.category}
+          </Typography>
       </CardContent>
       <CardActions disableSpacing className={classes.cardActions}>
-        <IconButton aria-label="Add to Cart">
-          <AddShoppingCart />
+      {cart.some((p) => p.id === values.id)? (
+        <IconButton aria-label="Add to Cart" onClick={() => {
+          dispatch({
+            type: "REMOVE_FROM_CART",
+            payload: values,
+          }); 
+        }}>
+          
+        <RemoveShoppingCartIcon />
         </IconButton>
+      ) : 
+        (<IconButton aria-label="Remove from Cart" onClick={() => {
+          dispatch({
+            type: "ADD_TO_CART",
+            payload: values,
+          }); 
+        }}>
+        <AddShoppingCart />
+        </IconButton>)}
       </CardActions>
     </Card>
   );

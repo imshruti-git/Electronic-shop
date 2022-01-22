@@ -7,7 +7,8 @@ export default makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    
+    overflow: 'hidden',
+    marginTop:'10px',
     padding: theme.spacing(3),
   },
   root: {
