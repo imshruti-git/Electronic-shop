@@ -61,7 +61,7 @@ const Cart = () => {
       </>
     );
   return(
-    <Container maxWidth="md">
+    <Container fixed>
         <div className={classes.toolbar} />
         <div  className='classes.content'>
         <Grid container spacing={3}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, Grid, TextField, FormControlLabel, Checkbox } from '@material-ui/core';
+import { Container, Typography, Grid, TextField, FormControlLabel, Checkbox, Button } from '@material-ui/core';
 import useStyles from './checkout';
 
 const Checkout = () => {
@@ -7,7 +7,7 @@ const Checkout = () => {
 
   return (
 
-      <Container fixed>
+      <Container maxWidth="md">
         <div className={classes.toolbar} /> 
         <div  className='classes.content'>
             <Typography variant="h6" gutterBottom>
@@ -37,60 +37,54 @@ const Checkout = () => {
         <Grid item xs={12}>
           <TextField
             required
-            id="address1"
-            name="address1"
-            label="Address line 1"
+            id="billingAddress"
+            name="billingAddress"
+            label="Billing Address"
             fullWidth
-            autoComplete="shipping address-line1"
+            autoComplete="address-line1"
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
-            id="address2"
-            name="address2"
-            label="Address line 2"
+            id="deliveryAddress"
+            name="delliveryAddress"
+            label="Delivery Address"
             fullWidth
-            autoComplete="shipping address-line2"
+            autoComplete=" address-line2"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              id="zip"
+              name="zip"
+              label="Telephone Number"
+              fullWidth
+              autoComplete="Telephone Number"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
           <TextField
-            required
-            id="city"
-            name="city"
-            label="City"
-            fullWidth
-            autoComplete="shipping address-level2"
-          />
+            id="date"
+            label="Date"
+            type="date"
+            defaultValue="2017-05-24"
+            InputLabelProps={{
+              shrink: true,
+        }}
+      />
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField id="state" name="state" label="State/Province/Region" fullWidth />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="zip"
-            name="zip"
-            label="Zip / Postal code"
-            fullWidth
-            autoComplete="shipping postal-code"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="country"
-            name="country"
-            label="Country"
-            fullWidth
-            autoComplete="shipping country"
-          />
-        </Grid>
+        
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
             label="Use this address for payment details"
           />
+        </Grid>
+        <Grid item xs={12}>
+           <Button variant="contained" color="primary"> Confirm Order</Button>
         </Grid>
       </Grid>
        </div>
