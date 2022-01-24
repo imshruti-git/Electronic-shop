@@ -16,17 +16,17 @@ const Product = ({ values }) => {
       <CardMedia className={classes.image} image='https://electronic-ecommerce.herokuapp.com/fantechHeadset.jpg' title={values.name} />
       <CardContent>
         
-          <Typography variant="h6">
+          <Typography variant="subtitle2">
             Product: {values.name}
           </Typography>
-          <Typography variant="h6">
+          <Typography variant="subtitle2">
             Price: {values.price}
           </Typography>
         
-        <Typography variant="h6">
+        <Typography variant="subtitle2">
            Stock: {values.stock}
           </Typography>
-          <Typography variant="h6">
+          <Typography variant="subtitle2">
             Category: {values.category}
           </Typography>
       </CardContent>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, Grid, Button, Paper, ButtonBase } from '@material-ui/core';
+import { Container, Typography, Grid, Button, Paper } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { CartState } from '../../context/Context';
 import List from '@material-ui/core/List';
@@ -33,7 +33,7 @@ const Cart = () => {
     const renderCart = () => (
       <>
        <Paper className={classes.paper}>
-       {cart.map((values) => (
+       {cart.map((values) => (   
         <Grid container spacing={4}>
           <Grid item>
           <Typography className={classes.image}>
@@ -43,10 +43,10 @@ const Cart = () => {
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography gutterBottom variant="subtitle1">
+                <Typography gutterBottom variant="h6">
                 {values.name}
                 </Typography>
-                <Typography variant="body2" gutterBottom>
+                <Typography variant="subtitle2" gutterBottom>
                 {values.price}
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
@@ -66,7 +66,9 @@ const Cart = () => {
        </IconButton>
             </Grid>
           </Grid>
+          
         </Grid>
+         
         ))}
       </Paper>
       
