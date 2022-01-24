@@ -84,7 +84,7 @@ const Checkout = () => {
           />
         </Grid>
         <Grid item xs={12}>
-           <Button variant="contained" color="primary"> Confirm Order</Button>
+           <Button variant="contained" color="primary" onClick={() => alert('Your order has been placed')}> Confirm Order</Button>
         </Grid>
       </Grid>
        </div>

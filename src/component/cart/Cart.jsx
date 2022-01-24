@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, Grid, Button } from '@material-ui/core';
+import { Container, Typography, Grid, Button, Paper, ButtonBase } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { CartState } from '../../context/Context';
 import List from '@material-ui/core/List';
@@ -32,31 +32,44 @@ const Cart = () => {
 
     const renderCart = () => (
       <>
-       <List className={classes.root}>
+       <Paper className={classes.paper}>
        {cart.map((values) => (
-          <ListItem key={values.id} height="large">
-            <ListItemAvatar>
-              <Avatar
-                alt={values.name}
-                src={image}
-              />
-            </ListItemAvatar>
-
-            <ListItemText primary={values.name} />
-            <ListItemText secondary={values.price} />
-            <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="delete">
-                <DeleteIcon onClick={() => {
-                  dispatch({
-                    type: "REMOVE_FROM_CART",
-                    payload: values,
-                  }); 
-        }} />
-              </IconButton>
-            </ListItemSecondaryAction>
-          </ListItem>    
+        <Grid container spacing={4}>
+          <Grid item>
+          <Typography className={classes.image}>
+            <img src={image} alt="image" className={classes.img} />
+          </Typography>
+          </Grid>
+          <Grid item xs={12} sm container>
+            <Grid item xs container direction="column" spacing={2}>
+              <Grid item xs>
+                <Typography gutterBottom variant="subtitle1">
+                {values.name}
+                </Typography>
+                <Typography variant="body2" gutterBottom>
+                {values.price}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  {values.category}
+                </Typography>
+              </Grid>
+              
+            </Grid>
+            <Grid item>
+            <IconButton edge="end" aria-label="delete">
+              <DeleteIcon onClick={() => {
+                dispatch({
+                  type: "REMOVE_FROM_CART",
+                  payload: values,
+           }); 
+ }} />
+       </IconButton>
+            </Grid>
+          </Grid>
+        </Grid>
         ))}
-    </List>
+      </Paper>
+      
 
       </>
     );
@@ -69,10 +82,12 @@ const Cart = () => {
                 <Typography  className="classes.title" variant="h5" gutterBottom>Your Shopping Cart</Typography>
                 { !cart.length ? renderEmptyCart() : renderCart() }   
             </Grid>
-            <Grid item xs={12} sm={6}>              
-                <Typography  className="classes.title" variant="h5" gutterBottom>Subtotal {cart.length} items:</Typography>
+            <Grid item xs={12} sm={6}>   
+            <Paper className={classes.paper}>         
+                <Typography  className="classes.title" variant="h5" gutterBottom>Subtotal ({cart.length}) items:</Typography>
                 <Typography  className="classes.title" variant="h6" gutterBottom>Total:$ {total} </Typography>
                 <Button component={Link} to="/checkout" variant="contained" disabled={cart.length===0} color="primary"> Go to Chekout Form </Button>
+              </Paper>
             </Grid>
         </Grid>
 
